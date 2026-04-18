@@ -1,21 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Le fond principal : un crème très doux pour le côté organique */
+  --background: #fdfbf5;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Pour des sections de transition ou le fond des pétales au repos */
+  --background-secondary: #f7f3e9;
+
+  /* Le texte principal : un anthracite profond (mieux que le noir pur) */
+  --foreground: #1a1a1a;
+
+  /* Pour les textes moins importants (ex: dates, légendes) */
+  --foreground-secondary: #4a4a4a;
+
+  /* Le jaune du pistil : l'énergie ! */
+  --primary: #ffd700;
+
+  /* Un rose pétillant pour les interactions et le côté "spectacle" */
+  --secondary: #e91e63;
+
+  /* Un vert tige pour les détails, succès, ou liens */
+  --accent: #2d5a27;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* pas de dark mode pour ce site*/
   }
 }
 

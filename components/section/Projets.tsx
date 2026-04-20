@@ -1,21 +1,6 @@
 import { hygraphQuery } from "@/lib/hygraph";
-
-// Types correspondant au schéma Hygraph
-export interface Projet {
-  id: string;
-  titre: string;
-  date?: string | null;
-  priorite?: number | null;
-  texte: string[];          // Liste de blocs Markdown
-  videos: string[];         // URLs de vidéos
-  liens: string[];          // URLs de liens
-  images: {
-    url: string;
-    fileName: string;
-    width?: number | null;
-    height?: number | null;
-  }[];
-}
+import type { Projet } from "@/lib/types";
+import FleurProjets from "@/components/fleur/FleurProjets";
 
 interface ProjetsQueryResult {
   projets: Projet[];
@@ -23,7 +8,7 @@ interface ProjetsQueryResult {
 
 const GET_PROJETS = `
   query GetProjets {
-    projets(orderBy: priorite_ASC) {
+    projets {
       id
       titre
       date
@@ -43,20 +28,23 @@ const GET_PROJETS = `
 
 export default async function Projets() {
   const data = await hygraphQuery<ProjetsQueryResult>(GET_PROJETS);
-  const projets = data.projets;
 
-  console.log(`\n[Projets] ${projets.length} projet(s) récupéré(s) depuis Hygraph :`);
-  projets.forEach((p, i) => {
-    console.log(
-      `  [${i + 1}] "${p.titre}"`,
-      `| date: ${p.date ?? "—"}`,
-      `| priorité: ${p.priorite ?? "—"}`,
-      `| ${p.texte.length} bloc(s) texte`,
-      `| ${p.videos.length} vidéo(s)`,
-      `| ${p.liens.length} lien(s)`,
-      `| ${p.images.length} image(s)`
-    );
+  // ── Tri : priorite ASC, les null en dernier ──────────────────────────
+  const sorted = [...data.projets].sort((a, b) => {
+    if (a.priorite == null && b.priorite == null) return 0;
+    if (a.priorite == null) return 1;
+    if (b.priorite == null) return -1;
+    return a.priorite - b.priorite;
   });
 
-  return <></>;
+  // ── Pistil : premier projet si priorite === 0, sinon null ────────────
+  const pistil: Projet | null =
+    sorted[0]?.priorite === 0 ? sorted[0] : null;
+  const petales: Projet[] = pistil ? sorted.slice(1) : sorted;
+
+  console.log(
+    `[Projets] ${data.projets.length} projet(s) | pistil: "${pistil?.titre ?? "—"}" | ${petales.length} pétale(s)`
+  );
+
+  return <FleurProjets pistilProjet={pistil} petales={petales} />;
 }

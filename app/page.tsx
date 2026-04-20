@@ -23,7 +23,7 @@ export default function Home() {
 
       <SectionObserver
         id="projects"
-        className="min-h-screen flex flex-col justify-center items-center py-12 px-8 bg-(--background)"
+        className="min-h-screen flex flex-col justify-center items-center overflow-hidden bg-(--background)"
       >
         <Projects />
       </SectionObserver>

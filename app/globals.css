@@ -34,3 +34,32 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ── Animations overlay fleur ──────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.65); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Responsive : scale de la fleur sur petit écran ────────────── */
+/* Le conteneur FleurProjets a une largeur fixe (~640px).
+   On le réduit proportionnellement sur les petits écrans. */
+@media (max-width: 680px) {
+  .fleur-scale-wrapper {
+    transform: scale(0.55);
+    transform-origin: top center;
+    margin-bottom: calc(-640px * 0.45); /* compense l'espace vide laissé par le scale */
+  }
+}
+@media (min-width: 681px) and (max-width: 900px) {
+  .fleur-scale-wrapper {
+    transform: scale(0.78);
+    transform-origin: top center;
+    margin-bottom: calc(-640px * 0.22);
+  }
+}

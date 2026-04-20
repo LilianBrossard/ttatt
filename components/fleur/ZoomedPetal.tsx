@@ -137,7 +137,7 @@ export default function ZoomedPetal({
             inset: 0,
             overflowY: "auto",
             // Le padding pousse le contenu loin des pointes de l'ovale
-            padding: `${targetH * 0.25}px ${targetW * 0.2}px ${targetH * 0.25}px`,
+            padding: `${targetH * 0.1}px ${targetW * 0.25}px ${targetH * 0.3}px`,
             opacity: isOpen && isVisible ? 1 : 0,
             transition: "opacity 0.28s ease 0.32s",
           }}

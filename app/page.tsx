@@ -1,4 +1,5 @@
 import SectionObserver from "../components/SectionObserver";
+import Projects from "../components/section/Projets";
 
 export default function Home() {
   return (
@@ -24,13 +25,7 @@ export default function Home() {
         id="projects"
         className="min-h-screen flex flex-col justify-center items-center py-12 px-8 bg-(--background)"
       >
-        <h2 className="text-5xl lg:text-7xl font-(family-name:--font-dynaPuff) font-bold mb-6 text-(--accent)">
-          Projects
-        </h2>
-        <p className="text-xl max-w-2xl text-center">
-          Nos cr&eacute;ations, nos &eacute;v&eacute;nements culturels et
-          artistiques.
-        </p>
+        <Projects />
       </SectionObserver>
 
       <SectionObserver

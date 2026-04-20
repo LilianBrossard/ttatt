@@ -31,7 +31,7 @@ export default function RootLayout({
       lang="fr"
       className={`${dynaPuff.variable} ${lato.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col md:flex-row selection:bg-(--accent) selection:text-(--background)">
+      <body className="min-h-full flex flex-col md:flex-row selection:bg-(--primary) selection:text-(--background)">
         <SectionProvider>
           <Nav />
           <div className="flex-1 lg:ml-[25vw] w-full min-h-screen relative flex flex-col">

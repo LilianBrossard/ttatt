@@ -13,11 +13,11 @@
   /* Pour les textes moins importants (ex: dates, légendes) */
   --foreground-secondary: #4a4a4a;
 
-  /* Le jaune du pistil : l'énergie ! */
-  --primary: #ffd700;
-
   /* Un rose pétillant pour les interactions et le côté "spectacle" */
-  --secondary: #e91e63;
+  --primary: #e91e63;
+
+  /* Le jaune du pistil : l'énergie ! */
+  --secondary: #ffd700;
 
   /* Un vert tige pour les détails, succès, ou liens */
   --accent: #2d5a27;

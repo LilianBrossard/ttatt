@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { motion } from "framer-motion";
 
 // ── Math helpers ──────────────────────────────────────────────────────────────
 const { random, PI, sin, cos, floor, ceil } = Math;
@@ -234,6 +235,20 @@ export default function Accueil({ presentation }: { presentation?: string }) {
       ro.disconnect();
     };
   }, []);
+  const title = "TTATT";
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }, // Délai entre chaque lettre
+    },
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1 },
+  };
 
   return (
     <div
@@ -250,12 +265,18 @@ export default function Accueil({ presentation }: { presentation?: string }) {
 
       {/* Contenu texte — centré, par-dessus le SVG */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pointer-events-none p-4">
-        <h2
-          className="text-6xl lg:text-8xl font-bold font-(family-name:--font-dynaPuff) drop-shadow-lg select-none"
-          style={{ color: "var(--background)" }}
+        <motion.h2
+          variants={container}
+          initial="hidden"
+          animate="show"
+          className="text-6xl lg:text-8xl font-bold font-(family-name:--font-dynaPuff) drop-shadow-lg select-none bg-radial-[at_50%_75%] from-background via-secondary to-background to-110% bg-clip-text text-transparent flex"
         >
-          TTATT
-        </h2>
+          {title.split("").map((char, index) => (
+            <motion.span key={index} variants={item}>
+              {char}
+            </motion.span>
+          ))}
+        </motion.h2>
 
         {/* ── Qui sommes nous ? ─────────────────────────────────── */}
         {presentation && (

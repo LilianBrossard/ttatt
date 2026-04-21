@@ -15,3 +15,15 @@ export interface Projet {
   liens: string[]; // URLs liens
   images: ProjetImage[];
 }
+
+export interface AgendaEvent {
+  id: string;
+  titre: string;
+  description: string;
+  dateEtHeure: string;
+  lieu: string | null;
+  lien: string[];
+  image: ProjetImage | null;
+  // Champs calculés via geoapify
+  coordinates?: { lat: number; lng: number } | null;
+}

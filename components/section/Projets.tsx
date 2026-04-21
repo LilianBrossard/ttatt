@@ -1,6 +1,7 @@
 import { hygraphQuery } from "@/lib/hygraph";
 import type { Projet } from "@/lib/types";
 import FleurProjets from "@/components/fleur/FleurProjets";
+import Image from "next/image";
 
 interface ProjetsQueryResult {
   projets: Projet[];
@@ -38,13 +39,37 @@ export default async function Projets() {
   });
 
   // ── Pistil : premier projet si priorite === 0, sinon null ────────────
-  const pistil: Projet | null =
-    sorted[0]?.priorite === 0 ? sorted[0] : null;
+  const pistil: Projet | null = sorted[0]?.priorite === 0 ? sorted[0] : null;
   const petales: Projet[] = pistil ? sorted.slice(1) : sorted;
 
   console.log(
-    `[Projets] ${data.projets.length} projet(s) | pistil: "${pistil?.titre ?? "—"}" | ${petales.length} pétale(s)`
+    `[Projets] ${data.projets.length} projet(s) | pistil: "${pistil?.titre ?? "—"}" | ${petales.length} pétale(s)`,
   );
 
-  return <FleurProjets pistilProjet={pistil} petales={petales} />;
+  return (
+    <div className="w-full h-full flex flex-col justify-center items-center relative">
+      <Image
+        src="/microphone.svg"
+        alt="Microphone"
+        width={200}
+        height={200}
+        className="hidden lg:block absolute top-1/3 right-1/10 -rotate-90"
+      />
+      <Image
+        src="/music.svg"
+        alt="Music"
+        width={200}
+        height={200}
+        className="hidden lg:block absolute top-0 left-1/12"
+      />
+      <Image
+        src="/pendulum.svg"
+        alt="Pendulum"
+        width={200}
+        height={200}
+        className="hidden lg:block absolute bottom-1/8 left-1/6"
+      />
+      <FleurProjets pistilProjet={pistil} petales={petales} />
+    </div>
+  );
 }

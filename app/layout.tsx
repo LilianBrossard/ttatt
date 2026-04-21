@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
-import { DynaPuff, Lato } from "next/font/google";
+import { DynaPuff, Lato, Geist } from "next/font/google";
 import "./globals.css";
 import { SectionProvider } from "../components/SectionContext";
 import Nav from "../components/section/Nav";
+import SnapScroller from "../components/SnapScroller";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const dynaPuff = DynaPuff({
   variable: "--font-dynaPuff",
@@ -29,12 +33,13 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${dynaPuff.variable} ${lato.variable} h-full antialiased scroll-smooth`}
+      className={cn("h-full", "antialiased", "scroll-smooth", dynaPuff.variable, lato.variable, "font-sans", geist.variable)}
     >
-      <body className="min-h-full flex flex-col md:flex-row selection:bg-(--primary) selection:text-(--background)">
+      <body className="min-h-full flex flex-col selection:bg-(--primary) selection:text-(--background)">
         <SectionProvider>
           <Nav />
-          <div className="flex-1 lg:ml-[25vw] w-full min-h-screen relative flex flex-col">
+          <SnapScroller />
+          <div className="flex-1 w-full min-h-screen relative flex flex-col">
             {children}
           </div>
         </SectionProvider>

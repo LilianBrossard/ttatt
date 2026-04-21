@@ -1,68 +1,53 @@
 import SectionObserver from "../components/SectionObserver";
 import Projects from "../components/section/Projets";
+import Accueil from "../components/section/Accueil";
+import Agenda from "../components/section/Agenda";
+import Logistic from "../components/section/Logistic";
+import Contact from "../components/section/Contact";
+import Footer from "../components/section/Footer";
 
 export default function Home() {
   return (
-    <main className="flex flex-col w-full text-(--foreground)">
+    <main className="flex flex-col w-full text-foreground">
       <h1 className="sr-only">TTATT</h1>
 
       <SectionObserver
         id="accueil"
-        className="min-h-screen flex flex-col justify-center items-center relative py-12 px-8"
+        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-radial-[at_25%_25%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
       >
-        {/* Placeholder background layer */}
-        <div className="absolute inset-0 bg-(--background-secondary)/30 -z-10" />
-        <h2 className="text-5xl lg:text-7xl font-(family-name:--font-dynaPuff) font-bold mb-6 text-(--secondary)">
-          Accueil
-        </h2>
-        <p className="text-xl max-w-2xl text-center">
-          Bienvenue dans l'univers de TTATT. Scrollez vers le bas pour
-          d&eacute;couvrir les autres sections.
-        </p>
+        <Accueil />
       </SectionObserver>
 
       <SectionObserver
         id="projects"
-        className="min-h-screen flex flex-col justify-center items-center overflow-hidden bg-(--background)"
+        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-background shadow-lg shadow-background"
       >
         <Projects />
       </SectionObserver>
 
       <SectionObserver
         id="agenda"
-        className="min-h-screen flex flex-col justify-center items-center py-12 px-8 bg-(--background-secondary)"
+        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-radial-[at_75%_75%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
       >
-        <h2 className="text-5xl lg:text-7xl font-(family-name:--font-dynaPuff) font-bold mb-6 text-(--primary)">
-          Agenda
-        </h2>
-        <p className="text-xl max-w-2xl text-center">
-          D&eacute;couvrez les dates de nos prochains rassemblements.
-        </p>
+        <Agenda />
       </SectionObserver>
 
       <SectionObserver
         id="logistic"
-        className="min-h-screen flex flex-col justify-center items-center py-12 px-8 bg-(--background)"
+        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-background shadow-lg shadow-background"
       >
-        <h2 className="text-5xl lg:text-7xl font-(family-name:--font-dynaPuff) font-bold mb-6 text-(--secondary)">
-          Logistic
-        </h2>
-        <p className="text-xl max-w-2xl text-center">
-          Tout ce dont vous avez besoin de savoir pour venir et participer.
-        </p>
+        <Logistic />
       </SectionObserver>
 
       <SectionObserver
         id="contact"
-        className="min-h-[120vh] flex flex-col justify-start items-center py-32 px-8 bg-(--background-secondary)"
+        className="h-[80vh] flex flex-col justify-center items-center overflow-hidden bg-radial-[at_50%_50%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
       >
-        <h2 className="text-5xl lg:text-7xl font-(family-name:--font-dynaPuff) font-bold mb-6 text-(--accent)">
-          Contact
-        </h2>
-        <p className="text-xl max-w-2xl text-center">
-          Laissez-nous un message ou rejoignez-nous sur r&eacute;seaux.
-        </p>
+        <Contact />
       </SectionObserver>
+      <div className="h-[20vh] flex flex-col justify-center items-center overflow-hidden bg-foreground shadow-lg shadow-background text-background">
+        <Footer />
+      </div>
     </main>
   );
 }

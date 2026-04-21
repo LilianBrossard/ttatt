@@ -1,11 +1,18 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { youtubeEmbedProps } from "@/lib/youtube";
 import type { Projet } from "@/lib/types";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface Props {
   projet: Projet;
@@ -198,37 +205,50 @@ export default function ZoomedPetal({
             </p>
           )}
 
-          {/* ── Images ─────────────────────────────────────────────── */}
+          {/* ── Images : Carousel Shadcn ──────────────────────── */}
           {projet.images.length > 0 && (
-            <div
-              style={{
-                display: "flex",
-                gap: 12,
-                flexWrap: "wrap",
-                marginBottom: 24,
-              }}
-            >
-              {projet.images.map((img, i) => (
-                <div
-                  key={i}
-                  style={{
-                    position: "relative",
-                    width:
-                      projet.images.length === 1 ? "100%" : "calc(50% - 6px)",
-                    aspectRatio: "16/9",
-                    borderRadius: 12,
-                    overflow: "hidden",
-                  }}
-                >
-                  <Image
-                    src={img.url}
-                    alt={img.fileName}
-                    fill
-                    className="object-cover"
-                    sizes="400px"
-                  />
-                </div>
-              ))}
+            <div style={{ marginBottom: 24 }}>
+              <Carousel
+                opts={{ loop: projet.images.length > 1, align: "center" }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-3">
+                  {projet.images.map((img, i) => (
+                    <CarouselItem key={i} className="pl-3 basis-2/3">
+                      <div
+                        style={{
+                          position: "relative",
+                          width: "100%",
+                          aspectRatio: "16/9",
+                          borderRadius: 12,
+                          overflow: "hidden",
+                        }}
+                      >
+                        <Image
+                          src={img.url}
+                          alt={img.fileName}
+                          fill
+                          className="object-cover"
+                          sizes="400px"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                {projet.images.length > 1 && (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: 12,
+                      marginTop: 10,
+                    }}
+                  >
+                    <CarouselPrevious className="static translate-y-0" />
+                    <CarouselNext className="static translate-y-0" />
+                  </div>
+                )}
+              </Carousel>
             </div>
           )}
 

@@ -24,10 +24,7 @@ export default function AgendaCard({ event, onClick }: Props) {
   return (
     <Card 
       onClick={onClick}
-      className="cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] border border-border/50 hover:border-primary/50 hover:shadow-lg overflow-hidden bg-background/50 backdrop-blur-sm"
-      style={{
-        boxShadow: "0 4px 14px color-mix(in srgb, var(--background) 80%, transparent)",
-      }}
+      className="cursor-pointer transition-all hover:scale-[1.02] active:scale-[0.98] border border-border/50 hover:border-primary/50 overflow-hidden bg-background/50 backdrop-blur-sm"
     >
       {event.image && (
         <div className="relative w-full h-32 overflow-hidden bg-muted">
@@ -53,7 +50,7 @@ export default function AgendaCard({ event, onClick }: Props) {
       
       {!event.image && shortDesc && (
         <CardContent className="p-4 pt-0">
-          <p className="text-sm line-clamp-3 text-foreground-secondary italic">
+          <p className="text-sm line-clamp-3 text-foreground-secondary italic whitespace-pre-wrap">
             {shortDesc}
           </p>
         </CardContent>

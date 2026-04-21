@@ -75,14 +75,14 @@ export default function AgendaClient({ events }: Props) {
         Agenda
       </h2>
       
-      <ScrollArea className="w-full whitespace-nowrap rounded-lg flex-grow">
-        <div className="flex w-max space-x-4 p-4 h-full min-h-[500px]">
+      <div className="w-full whitespace-nowrap rounded-lg flex-grow h-full min-h-0 overflow-x-auto overflow-y-hidden outline-none">
+        <div className="flex w-max space-x-4 p-4 h-full items-stretch">
           {columns.map((col, i) => (
             <div 
               key={i} 
               className={`flex flex-col rounded-2xl p-4 transition-all overflow-hidden relative ${
                 col.events.length > 0 ? "w-80" : "w-16 items-center opacity-70"
-              }`}
+              } h-full`}
               style={{
                 background: "color-mix(in srgb, var(--background) 50%, transparent)",
                 boxShadow: "inset 0 0 20px color-mix(in srgb, var(--primary) 5%, transparent)",
@@ -102,7 +102,7 @@ export default function AgendaClient({ events }: Props) {
               </div>
               
               {col.events.length > 0 && (
-                <ScrollArea className="h-full pr-2">
+                <ScrollArea className="flex-grow pr-2 min-h-0 h-full">
                   <div className="flex flex-col gap-4 pb-4">
                     {col.events.map((ev) => (
                       <AgendaCard 
@@ -117,8 +117,7 @@ export default function AgendaClient({ events }: Props) {
             </div>
           ))}
         </div>
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea>
+      </div>
 
       {/* Modal / Dialog via prop onClose passée pour remettre à null */}
       {selectedEvent && (

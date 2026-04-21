@@ -39,7 +39,7 @@ export default async function Home() {
 
       <SectionObserver
         id="agenda"
-        className="min-h-screen flex flex-col overflow-hidden bg-radial-[at_75%_75%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
+        className="h-screen w-full flex flex-col overflow-hidden bg-radial-[at_75%_75%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
       >
         <Agenda />
       </SectionObserver>

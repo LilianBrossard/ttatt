@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
@@ -34,6 +34,14 @@ export default function AgendaDetail({ event, onClose }: Props) {
     hour: "2-digit",
     minute: "2-digit"
   }).format(new Date(event.dateEtHeure));
+
+  useEffect(() => {
+    // Force blocking the background scroll when opened
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>

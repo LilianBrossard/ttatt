@@ -1,3 +1,4 @@
+import { hygraphQuery } from "@/lib/hygraph";
 import SectionObserver from "../components/SectionObserver";
 import Projects from "../components/section/Projets";
 import Accueil from "../components/section/Accueil";
@@ -6,7 +7,18 @@ import Logistic from "../components/section/Logistic";
 import Contact from "../components/section/Contact";
 import Footer from "../components/section/Footer";
 
-export default function Home() {
+const GET_INFOS = `
+  query GetInfos {
+    informationsGenerals {
+      presentation
+    }
+  }
+`;
+
+export default async function Home() {
+  const data = await hygraphQuery<{ informationsGenerals: { presentation: string }[] }>(GET_INFOS);
+  const presentation = data.informationsGenerals?.[0]?.presentation || "";
+
   return (
     <main className="flex flex-col w-full text-foreground">
       <h1 className="sr-only">TTATT</h1>
@@ -15,7 +27,7 @@ export default function Home() {
         id="accueil"
         className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-radial-[at_25%_25%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
       >
-        <Accueil />
+        <Accueil presentation={presentation} />
       </SectionObserver>
 
       <SectionObserver

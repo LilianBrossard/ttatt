@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 // ── Math helpers ──────────────────────────────────────────────────────────────
 const { random, PI, sin, cos, floor, ceil } = Math;
@@ -161,7 +163,7 @@ const FADE_DURATION_MS = 5_000;
 /** Intervalle de création des fleurs (ms) */
 const SPAWN_INTERVAL_MS = 150;
 
-export default function Accueil() {
+export default function Accueil({ presentation }: { presentation?: string }) {
   const svgRef = useRef<SVGSVGElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const mouseRef = useRef<{ x: number; y: number; inside: boolean }>({
@@ -247,21 +249,82 @@ export default function Accueil() {
       />
 
       {/* Contenu texte — centré, par-dessus le SVG */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen select-none pointer-events-none">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen pointer-events-none p-4">
         <h2
-          className="text-6xl lg:text-8xl font-bold font-(family-name:--font-dynaPuff) drop-shadow-lg"
+          className="text-6xl lg:text-8xl font-bold font-(family-name:--font-dynaPuff) drop-shadow-lg select-none"
           style={{ color: "var(--background)" }}
         >
           TTATT
         </h2>
-        <p
-          className="mt-4 text-xl tracking-wide"
-          style={{
-            color: "color-mix(in srgb, var(--background) 80%, transparent)",
-          }}
-        >
-          Musique · Art · Culture
-        </p>
+
+        {/* ── Qui sommes nous ? ─────────────────────────────────── */}
+        {presentation && (
+          <div
+            className="mt-16 w-full max-w-3xl rounded-3xl p-6 lg:p-10 pointer-events-auto"
+            style={{
+              background:
+                "color-mix(in srgb, var(--background) 30%, transparent)",
+              boxShadow:
+                "0 8px 32px color-mix(in srgb, var(--foreground) 10%, transparent)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <h3
+              className="text-2xl lg:text-4xl font-bold mb-6 text-start"
+              style={{
+                fontFamily: "var(--font-dynaPuff)",
+                color: "var(--foreground)",
+              }}
+            >
+              Qui sommes nous ?
+            </h3>
+            <div
+              className="prose prose-sm lg:prose-base max-w-none prose-p:leading-relaxed prose-p:mb-4"
+              style={{ color: "var(--foreground)" }}
+            >
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  p: ({ children }) => (
+                    <p style={{ color: "var(--foreground)" }}>{children}</p>
+                  ),
+                  strong: ({ children }) => (
+                    <strong
+                      className="font-bold"
+                      style={{ color: "var(--primary)" }}
+                    >
+                      {children}
+                    </strong>
+                  ),
+                  em: ({ children }) => <em className="italic">{children}</em>,
+                  a: ({ href, children }) => (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 transition-colors"
+                      style={{ color: "var(--primary)" }}
+                    >
+                      {children}
+                    </a>
+                  ),
+                  ul: ({ children }) => (
+                    <ul className="list-disc pl-5 mb-4 space-y-1">
+                      {children}
+                    </ul>
+                  ),
+                  ol: ({ children }) => (
+                    <ol className="list-decimal pl-5 mb-4 space-y-1">
+                      {children}
+                    </ol>
+                  ),
+                }}
+              >
+                {presentation}
+              </ReactMarkdown>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -46,15 +46,14 @@ result.data.__type.fields.forEach(f => {
 });
 
 // Now try a basic query with scalar fields only
-const projets = await gql(`{
-  projets {
-    id
-    titre
-    date
-    priorite
-    liens
-    videos
-    texte
+const q = `
+{
+  __type(name: "Query") {
+    fields {
+      name
+    }
   }
-}`);
+}
+`;
+const projets = await gql(q);
 console.log("\nBasic projets query:", JSON.stringify(projets, null, 2));

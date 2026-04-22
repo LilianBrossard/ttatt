@@ -58,102 +58,107 @@ export default function Footer({ legalInfo }: FooterProps) {
                 <DialogTitle className="text-3xl font-bold text-primary mb-2 font-heading">
                   Mentions Légales
                 </DialogTitle>
-                <DialogDescription className="space-y-6 text-base text-foreground/80 text-left pt-4">
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm">
-                        1
-                      </span>
-                      Éditeur du site
-                    </h3>
-                    <div className="pl-8 space-y-1 bg-muted/30 p-4 rounded-xl">
-                      <p>
-                        Ce site est édité par :{" "}
-                        <strong className="text-foreground">
-                          {COMPANY_NAME}
-                        </strong>
-                      </p>
-                      <p>Adresse : {ADDRESS}</p>
-                      <p>
-                        Email :{" "}
-                        <a
-                          href={`mailto:${EMAIL}`}
-                          className="text-primary hover:underline font-medium"
-                        >
-                          {EMAIL}
-                        </a>
-                      </p>
-                      <p>Téléphone : {PHONE}</p>
-                      <p>RNA : {RNA}</p>
-                      <p>Directeur de la publication : {DIRECTOR}</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm">
-                        2
-                      </span>
-                      Hébergement
-                    </h3>
-                    <div className="pl-8 space-y-1 bg-muted/30 p-4 rounded-xl">
-                      <p>
-                        Le site est hébergé par :{" "}
-                        <strong className="text-foreground">{HOST_NAME}</strong>
-                      </p>
-                      <p>Adresse : {HOST_ADDRESS}</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm">
-                        3
-                      </span>
-                      Propriété intellectuelle
-                    </h3>
-                    <div className="pl-8 bg-muted/30 p-4 rounded-xl">
-                      <p>
-                        L'ensemble de ce site relève de la législation française
-                        et internationale sur le droit d'auteur et la propriété
-                        intellectuelle. Tous les droits de reproduction sont
-                        réservés.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
-                      <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm">
-                        4
-                      </span>
-                      Données personnelles
-                    </h3>
-                    <div className="pl-8 bg-muted/30 p-4 rounded-xl">
-                      <p>Aucune données personnelles ne sont collectées.</p>
-                    </div>
-                  </div>
+                <DialogDescription className="sr-only">
+                  Détails des mentions légales, éditeur, hébergement et
+                  propriété intellectuelle.
                 </DialogDescription>
               </DialogHeader>
+
+              <div className="space-y-6 text-base text-foreground/80 text-left">
+                <div className="space-y-2">
+                  <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm">
+                      1
+                    </span>
+                    Éditeur du site
+                  </h3>
+                  <div className="pl-8 space-y-1 bg-muted/30 p-4 rounded-xl">
+                    <p>
+                      Ce site est édité par :{" "}
+                      <strong className="text-foreground">
+                        {COMPANY_NAME}
+                      </strong>
+                    </p>
+                    <p>Adresse : {ADDRESS}</p>
+                    <p>
+                      Email :{" "}
+                      <a
+                        href={`mailto:${EMAIL}`}
+                        className="text-primary hover:underline font-medium"
+                      >
+                        {EMAIL}
+                      </a>
+                    </p>
+                    <p>Téléphone : {PHONE}</p>
+                    <p>RNA : {RNA}</p>
+                    <p>Directeur de la publication : {DIRECTOR}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm">
+                      2
+                    </span>
+                    Hébergement
+                  </h3>
+                  <div className="pl-8 space-y-1 bg-muted/30 p-4 rounded-xl">
+                    <p>
+                      Le site est hébergé par :{" "}
+                      <strong className="text-foreground">{HOST_NAME}</strong>
+                    </p>
+                    <p>Adresse : {HOST_ADDRESS}</p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm">
+                      3
+                    </span>
+                    Propriété intellectuelle
+                  </h3>
+                  <div className="pl-8 bg-muted/30 p-4 rounded-xl">
+                    <p>
+                      L'ensemble de ce site relève de la législation française
+                      et internationale sur le droit d'auteur et la propriété
+                      intellectuelle. Tous les droits de reproduction sont
+                      réservés.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
+                    <span className="w-6 h-6 rounded-full bg-primary/20 text-primary flex items-center justify-center text-sm">
+                      4
+                    </span>
+                    Données personnelles
+                  </h3>
+                  <div className="pl-8 bg-muted/30 p-4 rounded-xl">
+                    <p>Aucune données personnelles ne sont collectées.</p>
+                  </div>
+                </div>
+              </div>
             </DialogContent>
           </Dialog>
-
-          <a
-            href="https://lilian-brossard.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-primary transition-colors group px-4 py-2 rounded-full bg-background/10 hover:bg-background/20"
-          >
-            Développé par{" "}
-            <span className="text-background font-bold group-hover:text-primary transition-colors">
-              Lilian Brossard
-            </span>
-            <ExternalLink
-              size={16}
-              className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"
-            />
-          </a>
         </div>
+
+        <a
+          href="https://lilian-brossard.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 hover:text-primary transition-colors group px-4 py-2 rounded-full bg-background/10 hover:bg-background/20"
+        >
+          Développé par{" "}
+          <span className="text-background font-bold group-hover:text-primary transition-colors">
+            Lilian Brossard
+          </span>
+          <ExternalLink
+            size={16}
+            className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform"
+          />
+        </a>
       </div>
     </footer>
   );

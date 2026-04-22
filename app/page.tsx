@@ -10,15 +10,29 @@ const GET_INFOS = `
   query GetInfos {
     informationsGenerals {
       presentation
+      mail
+      telephone
+      responsableDePublication
+      rna
+      adresse
     }
   }
 `;
 
 export default async function Home() {
   const data = await hygraphQuery<{
-    informationsGenerals: { presentation: string }[];
+    informationsGenerals: {
+      presentation: string;
+      mail: string;
+      telephone: string;
+      responsableDePublication: string;
+      rna: string;
+      adresse: string;
+    }[];
   }>(GET_INFOS);
-  const presentation = data.informationsGenerals?.[0]?.presentation || "";
+  
+  const infos = data.informationsGenerals?.[0];
+  const presentation = infos?.presentation || "";
 
   return (
     <main className="flex flex-col w-full text-foreground">
@@ -52,7 +66,7 @@ export default async function Home() {
         <Contact />
       </SectionObserver>
       <div className="h-[20vh] flex flex-col justify-center items-center overflow-hidden bg-foreground shadow-lg shadow-background text-background">
-        <Footer />
+        <Footer legalInfo={infos} />
       </div>
     </main>
   );

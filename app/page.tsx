@@ -3,7 +3,6 @@ import SectionObserver from "../components/SectionObserver";
 import Projects from "../components/section/Projets";
 import Accueil from "../components/section/Accueil";
 import Agenda from "../components/section/Agenda";
-import Logistic from "../components/section/Logistic";
 import Contact from "../components/section/Contact";
 import Footer from "../components/section/Footer";
 
@@ -16,7 +15,9 @@ const GET_INFOS = `
 `;
 
 export default async function Home() {
-  const data = await hygraphQuery<{ informationsGenerals: { presentation: string }[] }>(GET_INFOS);
+  const data = await hygraphQuery<{
+    informationsGenerals: { presentation: string }[];
+  }>(GET_INFOS);
   const presentation = data.informationsGenerals?.[0]?.presentation || "";
 
   return (
@@ -42,13 +43,6 @@ export default async function Home() {
         className="h-screen w-full flex flex-col overflow-hidden bg-radial-[at_75%_75%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
       >
         <Agenda />
-      </SectionObserver>
-
-      <SectionObserver
-        id="logistic"
-        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-background shadow-lg shadow-background"
-      >
-        <Logistic />
       </SectionObserver>
 
       <SectionObserver

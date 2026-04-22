@@ -15,7 +15,7 @@ const GET_LAYOUT_INFOS = `
   }
 `;
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const dynaPuff = DynaPuff({
   variable: "--font-dynaPuff",
@@ -30,8 +30,22 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   title: "TTATT",
-  description:
-    "TTATT, musique, art, culture, association, festival, événement, spectacle, concert, famille, tout public, tous âges, tous publics, tout le monde",
+  description: "TTATT est un projet musical",
+  keywords: [
+    "musique",
+    "art",
+    "culture",
+    "association",
+    "festival",
+    "événement",
+    "spectacle",
+    "concert",
+    "famille",
+    "tout public",
+    "tous âges",
+    "tous publics",
+    "tout le monde",
+  ],
 };
 
 export default async function RootLayout({
@@ -43,11 +57,21 @@ export default async function RootLayout({
     informationsGenerals: { lienYoutube: string }[];
   }>(GET_LAYOUT_INFOS);
 
-  const youtubeUrl = data.informationsGenerals?.[0]?.lienYoutube || "https://www.youtube.com/@TTATT";
+  const youtubeUrl =
+    data.informationsGenerals?.[0]?.lienYoutube ||
+    "https://www.youtube.com/@TTATT";
   return (
     <html
       lang="fr"
-      className={cn("h-full", "antialiased", "scroll-smooth", dynaPuff.variable, lato.variable, "font-sans", geist.variable)}
+      className={cn(
+        "h-full",
+        "antialiased",
+        "scroll-smooth",
+        dynaPuff.variable,
+        lato.variable,
+        "font-sans",
+        geist.variable,
+      )}
     >
       <body className="min-h-full flex flex-col selection:bg-(--primary) selection:text-(--background)">
         <SectionProvider>

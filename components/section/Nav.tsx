@@ -14,8 +14,6 @@ export const NAV_LINKS = [
   { id: "contact", label: "Contact" },
 ];
 
-export const YOUTUBE_URL = "https://www.youtube.com/@TTATT";
-
 // Animation speed — higher = faster convergence (0 < speed ≤ 1)
 const LERP_SPEED = 0.06;
 // Snap threshold — when the animated index is this close, snap to target
@@ -60,7 +58,7 @@ function computeRouletteStyle(floatDistance: number) {
   return { opacity: 0.2, scale: 0.75, translateX: -8 };
 }
 
-export default function Nav() {
+export default function Nav({ youtubeUrl }: { youtubeUrl?: string }) {
   const { activeSection } = useSection();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -215,7 +213,7 @@ export default function Nav() {
           {/* YouTube */}
           <div className="shrink-0">
             <a
-              href={YOUTUBE_URL}
+              href={youtubeUrl || "https://www.youtube.com/"}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 text-lg font-bold text-(--foreground) hover:text-(--primary) transition-colors"

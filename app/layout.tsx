@@ -5,6 +5,15 @@ import { SectionProvider } from "../components/SectionContext";
 import Nav from "../components/section/Nav";
 import SnapScroller from "../components/SnapScroller";
 import { cn } from "@/lib/utils";
+import { hygraphQuery } from "@/lib/hygraph";
+
+const GET_LAYOUT_INFOS = `
+  query GetLayoutInfos {
+    informationsGenerals {
+      lienYoutube
+    }
+  }
+`;
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -25,11 +34,16 @@ export const metadata: Metadata = {
     "TTATT, musique, art, culture, association, festival, événement, spectacle, concert, famille, tout public, tous âges, tous publics, tout le monde",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const data = await hygraphQuery<{
+    informationsGenerals: { lienYoutube: string }[];
+  }>(GET_LAYOUT_INFOS);
+
+  const youtubeUrl = data.informationsGenerals?.[0]?.lienYoutube || "https://www.youtube.com/@TTATT";
   return (
     <html
       lang="fr"
@@ -37,7 +51,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col selection:bg-(--primary) selection:text-(--background)">
         <SectionProvider>
-          <Nav />
+          <Nav youtubeUrl={youtubeUrl} />
           <SnapScroller />
           <div className="flex-1 w-full min-h-screen relative flex flex-col">
             {children}

@@ -26,28 +26,28 @@ export default async function Home() {
 
       <SectionObserver
         id="accueil"
-        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-radial-[at_25%_25%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
+        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-radial-[at_50%_50%] from-background/70 via-background/60 to-background/20 bg-primary shadow-lg shadow-background"
       >
         <Accueil presentation={presentation} />
       </SectionObserver>
 
       <SectionObserver
         id="projects"
-        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-background shadow-lg shadow-background"
+        className=" min-h-screen flex flex-col justify-center items-center overflow-hidden bg-radial-[at_50%_50%] from-background/70 via-background/60 to-background/20 bg-primary shadow-lg shadow-background"
       >
         <Projects />
       </SectionObserver>
 
       <SectionObserver
         id="agenda"
-        className="h-screen w-full flex flex-col overflow-hidden bg-radial-[at_75%_75%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
+        className="h-screen w-full flex flex-col overflow-hidden bg-radial-[at_50%_50%] from-background/70 via-background/60 to-background/20 bg-primary shadow-lg shadow-background"
       >
         <Agenda />
       </SectionObserver>
 
       <SectionObserver
         id="contact"
-        className="h-[80vh] flex flex-col justify-center items-center overflow-hidden bg-radial-[at_50%_50%] from-background/70 to-primary bg-primary shadow-lg shadow-background"
+        className="h-[80vh] flex flex-col justify-center items-center overflow-hidden bg-radial-[at_50%_50%] from-background/70 via-background/60 to-background/20 bg-primary shadow-lg shadow-background"
       >
         <Contact />
       </SectionObserver>
